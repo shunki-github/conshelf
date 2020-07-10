@@ -1,0 +1,66 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <div class="title">
+        <h1 class="title">
+          show viewing
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-96x128">
+              <%= attachment_image_tag @shelf, :image %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= @shelf.title %></p>
+              </div>
+            </div>
+            <div class="content">
+              <table class="table is-narrow">
+                <tr>
+                  <th>book</th>
+                </tr>
+                <tr>
+                  <td><%= simple_format @shelf.body %></td>
+                </tr>
+              </table>
+              <% if @shelf.user.id == current_user.id %>
+                <%= link_to "edit", edit_shelf_path(@shelf), class: "button is-success" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <article class="panel is-link">
+          <p class="panel-heading">
+            By <%= @shelf.user.username %>
+          </p>
+          <div class="panel-block">
+            <p class="control">
+              <%= @shelf.user.profile %>
+            </p>
+          </div>
+          <%= link_to user_path(@shelf.user), class: "panel-block" do %>
+            <span class="panel-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+            <%= @shelf.user.username %>のページ
+          <% end %>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        edit
+      </h1>
+    </div>
+  </div>
+</section>
+
+<% if @user.errors.any? %>
+  <div class="notification is-danger">
+    <h2><%= pluralize(@user.errors.count, "error") %>prohibeted this object from being saved: not successfully</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @user do |f| %>
+          <div class="field">
+            <%= f.label :username, "name", class: "label" %>
+            <%= f.text_field :username, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :email, "email", class: "label" %>
+            <%= f.text_field :email, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :profile, "profile", class: "label" %>
+            <%= f.text_field :profile, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :profile_image, "profile_image", class: "label" %>
+            <%= f.attachment_field :profile_image, class: "input" %>
+          </div>
+
+          <%= f.submit "update", class: "button is-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

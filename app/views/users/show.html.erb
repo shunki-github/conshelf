@@ -1,0 +1,101 @@
+<section class="hero is-primary">
+  <div class="hero-boky">
+    <div class="container">
+      <h1 class="title">
+        Profile page
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <figure class="image is-128x128" style="margin-left: auto; margin-right: auto;" >
+              <%= attachment_image_tag @user, :profile_image, fallback: "IMG_3498.PNG", class: "profile_image is-rounded" %>
+            </figure>
+          </div>
+          <div class="column is-8">
+            <table class="table is-fullwidth">
+              <tr>
+                <td class="is-size-4">
+                  <strong><%= @user.username %></strong>
+                </td>
+                <% if @user.id == current_user.id %>
+                <td class="is-size-4">
+                  <%= @user.email %>
+                </td>
+                <td>
+                  <%= link_to "edit", edit_user_path(@user), class: "button is-primary" %>
+                </td>
+                <td>
+                  <%= link_to "Post", new_shelf_path, class: "button is-primary" %>
+                </td>
+                <% end %>
+              </tr>
+            </table>
+            <table class="table is-fullwidth">
+              <tr>
+                <td>
+                  <%= @user.profile %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @user.shelves.each do |shelf| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-96x128">
+                <%= link_to shelf_path(shelf) do %>
+                  <%= attachment_image_tag shelf, :image, fallback: "no-image.png" %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <%= link_to shelf_path(shelf), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    Look
+                  <% end %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to shelf_path(shelf), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      Edit
+                    <% end %>
+                    <%= link_to  shelf_path(shelf), method: :delete, data: {confirm: "Do you really delete?"}, class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-trash"></i>
+                      </span>
+                      Delete
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="content">
+                <time><%= shelf.updated_at.strftime("%Y-%m-%d %H:%M") %></time>Update
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

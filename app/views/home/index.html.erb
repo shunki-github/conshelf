@@ -1,0 +1,55 @@
+<section class="section">
+  <% if user_signed_in? %>
+      <article class="media">
+      <div class="media-content">
+        <div class="content has-text-centered">
+          <p>
+            <strong class="is-size-1" style="font-family: system-ui;">Conshelf</strong>
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-5">
+            <br>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-primary is-fullwidth" %>
+            <br>
+            <%= link_to "Shelf", shelves_path, class: "button is-primary is-fullwidth" %>
+            <br>
+            <%= link_to "My page", user_path(current_user), class: "button is-primary is-fullwidth" %>
+          </div>
+        </div>
+      </div>
+    </article>
+  <% else %>
+    <article class="media">
+      <div class="media-content">
+        <div class="content has-text-centered">
+          <p>
+            <strong class="is-size-1" style="font-family: system-ui;">Conshelf</strong>
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-5">
+            <br>
+            <%= link_to "Login", new_user_session_path, class: "button is-primary is-fullwidth" %>
+            <br>
+            <%= link_to "Sign up", new_user_registration_path, class: "button is-primary is-fullwidth" %>
+          </div>
+        </div>
+      </div>
+    </article>
+  <% end %>
+  <br>
+  <div class="columns is-centered">
+    <div class="column">
+      <p class="is-size-4 has-text-centered">Conshelf is a book sharing site.<br>Meet new books by sharing them with other users.</p>
+    </div>
+  </div>
+  <br>
+  <div class="columns is-centered">
+    <div class="column">
+      <figure>
+        <div class="main-image"></div>
+      </figure>
+    </div>
+  </div>
+</section>

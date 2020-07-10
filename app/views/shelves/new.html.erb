@@ -1,0 +1,47 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        new shelf
+      </h1>
+    </div>
+  </div>]
+</div>
+
+<% if @shelf.errors.any? %>
+  <div class="notification is-danger">
+    <h2><%= pluralize(@shelf.errors.count, "error") %>prohibeted this object from being saved: not successfully</h2>
+    <ul>
+      <% @shelf.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="columns is-6">
+        <%= form_for @shelf do |f| %>
+          <div class="field">
+            <%= f.label :title, "book name", class: "label" %>
+            <%= f.text_field :title, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :body, "Overview", class: "label" %>
+            <%= f.text_area :body, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :image, "photo", class: "label" %>
+            <%= f.attachment_field :image, class: "input" %>
+          </div>
+
+          <%= f.submit 'Post', class: "button is-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
