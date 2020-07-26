@@ -4,7 +4,7 @@
 ConshelfはConnectとShelfをつなげた造語です。
 その名の通り本棚をつなげるという意味で、自分の好きな本を共有するためのSNSです。
 
-ruby, rails, sqlite3(開発用), postgres(Heroku用)で作成しました。
+ruby2.6.6, rails6.0.3.2, sqlite3 1.4(開発用), postgres(Heroku用)で作成しました。
 環境はvagrant, ubuntuOSです。
 gem: bulma-rails, devise, refile, refile-mini_magick
 
